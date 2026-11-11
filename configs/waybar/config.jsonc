@@ -1,0 +1,71 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin": "0 0 0 0",
+  "spacing": 4,
+  "modules-left": [
+    "custom/apps"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "network",
+    "pulseaudio",
+    "custom/brightness",
+    "custom/settings"
+  ],
+  "custom/apps": {
+    "format": "󰣇",
+    "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi"
+  },
+  "clock": {
+    "format": "{:%H:%M  %A, %B(%d)}",
+    "tooltip-format": "{:%d/%m/%Y}"
+  },
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "on-click": "nm-connection-editor"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "on-click": "blueman-manager"
+  },
+  "pulseaudio": {
+    "format": "󰕾",
+    "format-muted": "󰖁",
+    "on-click": "pavucontrol",
+    "on-scroll-up": "swayosd-client --output-volume raise",
+    "on-scroll-down": "swayosd-client --output-volume lower"
+  },
+  "backlight": {
+    "format": "☀",
+    "tooltip": true,
+    "tooltip-format": "Brilho do notebook: {percent}%",
+    "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+    "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "custom/brightness": {
+    "exec": "/home/gabriel/.config/waybar/scripts/status-brilho.sh",
+    "return-type": "json",
+    "interval": 3,
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh",
+    "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down"
+  },
+  "custom/settings": {
+    "format": "󰒓",
+    "tooltip": true,
+    "tooltip-format": "Configurações",
+    "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'"
+  }
+}

@@ -1,0 +1,81 @@
+add_newline = false
+
+format = """
+[╭─](bold #C084FC) ${custom.arch}$username$hostname $directory$git_branch$git_status$python$nodejs$rust$java$cpp$cmd_duration$status
+[╰─](bold #C084FC) $character"""
+
+[custom.arch]
+command = "echo 󰣇"
+when = true
+format = "[$output]($style) "
+style = "bold #FBBF24"
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "bold #D6D3D1"
+
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style)"
+style = "bold #A855F7"
+
+[directory]
+format = "[](#392052)[󰉋](fg:#38BDF8 bg:#392052)[ $path](fg:#D8B4FE bg:#392052)[](#392052) "
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+format = "[](#392052)[$symbol$branch](fg:#C084FC bg:#392052)[](#392052) "
+
+[git_status]
+format = "[](#47391C)[$all_status$ahead_behind](fg:#FDE68A bg:#47391C)[](#47391C) "
+
+[python]
+detect_extensions = []
+detect_files = ["pyproject.toml", "requirements.txt", "Pipfile", "setup.py", "tox.ini"]
+detect_folders = [".venv", "venv"]
+symbol = " "
+format = "[](#173B33)[$symbol$version](fg:#86EFAC bg:#173B33)[](#173B33) "
+
+[nodejs]
+detect_extensions = []
+detect_files = ["package.json"]
+detect_folders = []
+symbol = " "
+format = "[](#173B33)[$symbol$version](fg:#86EFAC bg:#173B33)[](#173B33) "
+
+[rust]
+detect_extensions = []
+detect_files = ["Cargo.toml"]
+detect_folders = []
+symbol = " "
+format = "[](#392052)[$symbol$version](fg:#A855F7 bg:#392052)[](#392052) "
+
+[java]
+detect_extensions = []
+detect_files = ["pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "settings.gradle.kts"]
+detect_folders = []
+symbol = " "
+format = "[](#392052)[$symbol$version](fg:#A855F7 bg:#392052)[](#392052) "
+
+[cpp]
+detect_extensions = []
+detect_files = ["CMakeLists.txt", "meson.build", "Makefile"]
+detect_folders = []
+symbol = " "
+format = "[](#392052)[$symbol$version](fg:#C084FC bg:#392052)[](#392052) "
+
+[cmd_duration]
+min_time = 2000
+format = "[](#47391C)[󰔛 $duration](fg:#FDE68A bg:#47391C)[](#47391C) "
+
+[status]
+disabled = false
+symbol = "✗ "
+format = "[](#392052)[$symbol$status](fg:#A855F7 bg:#392052)[](#392052) "
+
+[character]
+success_symbol = "[❯](bold #38BDF8) "
+error_symbol = "[❯](bold #38BDF8) "

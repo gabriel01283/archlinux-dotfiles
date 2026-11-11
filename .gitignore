@@ -1,0 +1,33 @@
+# Backups e arquivos temporários
+*.bak
+*.bak-*
+*.backup
+*.backup-*
+*.old
+*.orig
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Logs e caches
+*.log
+.cache/
+tmp/
+temp/
+
+# Segredos e credenciais
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Sistema
+.DS_Store
+Thumbs.db

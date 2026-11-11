@@ -1,0 +1,4 @@
+layout splits
+launch --var window=terminal
+launch --location=vsplit --bias=60 --title="ARCH // SYSTEM" bash /home/gabriel/.config/kitty/arch-dashboard.sh
+focus_matching_window var:window=terminal

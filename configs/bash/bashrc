@@ -1,0 +1,47 @@
+#
+# ~/.bashrc
+#
+
+[[ $- != *i* ]] && return
+
+# Aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias brave='flatpak run com.brave.Browser'
+
+# PURPLE CYBERPUNK PROMPT
+
+# PURPLE CYBERPUNK - STARSHIP
+eval "$(starship init bash)"
+
+
+
+
+# Limpa a tela inteira, incluindo o Fastfetch
+clear() {
+    printf '\033[2J\033[3J\033[H'
+}
+
+# ARCH // INITIAL SCREEN
+if [[ $- == *i* && $TERM == xterm-kitty ]]; then
+    "$HOME/.config/kitty/arch-startup.sh"
+fi
+
+# CLEAR // FULL SCREEN
+clear() {
+    printf '\033[2J\033[3J\033[H'
+}
+
+
+# EZA - ícones de arquivos e pastas
+unalias ls 2>/dev/null
+alias ls='$HOME/.local/bin/ls-home-colorido'
+alias ll='eza -la --icons=always --group-directories-first'
+alias lt='eza --tree --level=2 --icons=always'
+
+# Pastas laranja no eza
+
+# Pastas laranja no eza
+
+# EZA - cores individuais das pastas
+export EZA_COLORS="di=38;2;251;146;60:*arquivos_jenna=38;2;56;189;248:*backup-astronaut-lofi=38;2;244;114;182:*backup-sddm-rainy-night=38;2;192;132;252:*Downloads=38;2;251;191;36:*IdeaProjects=38;2;45;212;191:*Imagens=38;2;163;230;53:*Jenna_Recuperacao=38;2;251;146;60:*Área de trabalho=38;2;129;140;248"

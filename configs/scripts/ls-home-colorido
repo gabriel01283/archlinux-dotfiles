@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+CORES = {
+    "arquivos_jenna": "#38BDF8",
+    "backup-astronaut-lofi": "#F472B6",
+    "backup-sddm-rainy-night": "#C084FC",
+    "Downloads": "#FBBF24",
+    "IdeaProjects": "#2DD4BF",
+    "Imagens": "#A3E635",
+    "Jenna_Recuperacao": "#FB923C",
+    "Área de trabalho": "#818CF8",
+}
+
+ANSI = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def colorir(linha):
+    texto = ANSI.sub("", linha)
+
+    for nome, hexadecimal in CORES.items():
+        if texto.endswith(" " + nome) or texto.endswith(" '" + nome + "'"):
+            rgb = hexadecimal.lstrip("#")
+            r, g, b = bytes.fromhex(rgb)
+            return f"\033[38;2;{r};{g};{b}m{texto}\033[0m"
+
+    return linha
+
+
+def main():
+    args = sys.argv[1:]
+
+    if Path.cwd() != Path.home() or args:
+        os.execvp(
+            "eza",
+            ["eza", "--icons=always", "--group-directories-first", *args]
+        )
+
+    comando = [
+        "eza", "--icons=always",
+        "--group-directories-first",
+        "--color=always", "--oneline"
+    ]
+
+    resultado = subprocess.run(
+        comando, capture_output=True, text=True
+    )
+
+    if resultado.returncode:
+        sys.stderr.write(resultado.stderr)
+        sys.exit(resultado.returncode)
+
+    linhas = [colorir(l) for l in resultado.stdout.splitlines()]
+
+    if not linhas:
+        return
+
+    # Largura visível, desconsiderando códigos ANSI.
+    def largura(s):
+        from wcwidth import wcswidth
+        return max(0, wcswidth(ANSI.sub("", s)))
+
+    try:
+        import wcwidth
+    except ImportError:
+        for linha in linhas:
+            print(linha)
+        return
+
+    # Reserva espaço para o dashboard do Kitty.
+    largura_terminal = min(
+        shutil.get_terminal_size((80, 24)).columns,
+        105
+    )
+    espacamento = 2
+    max_colunas = 4
+
+    for colunas in range(min(len(linhas), max_colunas), 0, -1):
+        linhas_por_coluna = (len(linhas) + colunas - 1) // colunas
+        grupos = [
+            linhas[i * linhas_por_coluna:(i + 1) * linhas_por_coluna]
+            for i in range(colunas)
+        ]
+        larguras = [max(map(largura, g)) for g in grupos if g]
+
+        if sum(larguras) + espacamento * (len(larguras) - 1) <= largura_terminal:
+            break
+
+    for i in range(linhas_por_coluna):
+        partes = []
+        for j, grupo in enumerate(grupos):
+            if i >= len(grupo):
+                continue
+            item = grupo[i]
+            if j < len(grupos) - 1:
+                item += " " * (larguras[j] - largura(item) + espacamento)
+            partes.append(item)
+        print("".join(partes))
+
+
+if __name__ == "__main__":
+    main()

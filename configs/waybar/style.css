@@ -1,0 +1,58 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 16px;
+    border: none;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(7, 21, 34, 0.90);
+    color: #D9F5FF;
+}
+
+#custom-apps,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-brightness,
+#custom-settings,
+#battery,
+#clock {
+    padding: 0 12px;
+    margin: 4px 2px;
+    background: transparent;
+    color: #D9F5FF;
+}
+
+#custom-apps,
+#custom-settings {
+    color: #00F5FF;
+}
+
+#custom-settings,
+#custom-brightness {
+    font-size: 18px;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+    color: #fb7185;
+}
+
+tooltip {
+    background: #071522;
+    color: #D9F5FF;
+    border: 1px solid #00BFFF;
+    border-radius: 8px;
+}
+
+/* Tamanho do ícone Arch Linux */
+#custom-apps {
+    font-size: 22px;
+}
+
+/* Azul vivo: Arch Linux e engrenagem */
+#custom-apps,
+#custom-settings {
+    color: #38BDF8;
+}

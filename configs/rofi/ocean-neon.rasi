@@ -1,0 +1,97 @@
+* {
+    bg:           #071522F2;
+    bg-alt:       #10314AF0;
+    fg:           #D9F5FF;
+    cyan:         #00F5FF;
+    blue:         #00BFFF;
+    ice:          #B7F3FF;
+    muted:        #7296A9;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrainsMono Nerd Font 13";
+}
+
+window {
+    width: 620px;
+    location: center;
+    anchor: center;
+    border: 2px;
+    border-color: @cyan;
+    border-radius: 18px;
+    background-color: @bg;
+    padding: 22px;
+}
+
+mainbox {
+    spacing: 16px;
+    children: [ inputbar, message, listview ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border-radius: 12px;
+    padding: 14px;
+    spacing: 10px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @cyan;
+    font: "JetBrainsMono Nerd Font Bold 15";
+}
+
+entry {
+    placeholder: "Pesquisar aplicativos...";
+    placeholder-color: @muted;
+    text-color: @ice;
+    cursor: text;
+}
+
+listview {
+    lines: 7;
+    columns: 1;
+    spacing: 7px;
+    scrollbar: false;
+    fixed-height: false;
+}
+
+element {
+    padding: 11px;
+    spacing: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+element-icon {
+    size: 28px;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: @fg;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @bg-alt;
+    border: 1px;
+    border-color: @blue;
+}
+
+element selected.normal {
+    text-color: @cyan;
+}
+
+element-text selected {
+    text-color: @cyan;
+}
+
+message {
+    background-color: transparent;
+}
+
+textbox {
+    text-color: @ice;
+}
