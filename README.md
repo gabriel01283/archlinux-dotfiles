@@ -171,3 +171,19 @@ Manter uma referência versionada e organizada do meu ambiente para que eu possa
 `ARCH // PURPLE NEON`
 
 </div>
+
+## Instalador de configurações
+
+O `install.sh` permite restaurar as configurações pessoais do Arch Linux.
+
+### Comandos
+
+- `./install.sh --dry-run` — simula a instalação.
+- `./install.sh --install` — instala as configurações e cria backups.
+- `./install.sh --restore-backup CAMINHO` — restaura um backup anterior.
+
+O instalador preserva arquivos extras existentes e não instala pacotes,
+não configura SDDM/keyd e não reinicia serviços.
+
+Execute sem `sudo`. Algumas configurações dependem do hardware e dos
+programas instalados. O rollback básico foi testado em ambiente isolado.
