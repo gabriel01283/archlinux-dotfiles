@@ -44,8 +44,7 @@ local menu = "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocea
 ---- AUTOSTART ----
 -------------------
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("/home/gabriel/.config/waybar/scripts/visibilidade.sh restore")
+    hl.exec_cmd("/home/gabriel/.config/waybar/scripts/iniciar.sh")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("swaync")
     hl.exec_cmd("swayosd-server")

@@ -84,6 +84,9 @@ archlinux-dotfiles/
 │   ├── instalacao.md
 │   ├── atalhos.md
 │   └── recuperacao.md
+├── packages/
+│   ├── pacman.txt
+│   └── aur.txt
 ├── configs/
 │   ├── bash/
 │   ├── hypr/
@@ -108,7 +111,7 @@ Configuração personalizada em Lua, gerenciamento de janelas, atalhos e efeitos
 Terminal com tema escuro, transparência e scripts para dashboard de informações do sistema.
 
 ### Waybar
-Barra personalizada com controles, informações do sistema e scripts de brilho, wallpaper e configurações.
+Barra personalizada com controles, informações do sistema, scripts de brilho, wallpaper e configurações. A visibilidade é persistente entre reinicializações.
 
 ### Starship
 Prompt com identidade visual Arch Linux, informações de diretório e Git.
@@ -118,6 +121,30 @@ Telas de login e bloqueio personalizadas com temática de astronauta.
 
 ### Scripts
 Ferramentas auxiliares para interação com o desktop e listagem colorida de diretórios.
+
+## 👁️ Visibilidade persistente da Waybar
+
+A Waybar mantém o último estado de visibilidade após reiniciar o computador.
+
+- `Ctrl + Esc` alterna entre visível e escondida.
+- O estado é armazenado em `~/.local/state/waybar/visibility`.
+- `visibilidade.sh` alterna a barra e registra a preferência.
+- `iniciar.sh` consulta o estado salvo antes de iniciar a Waybar.
+- Quando o estado é `hidden`, a opção nativa `start_hidden` inicia a barra escondida, sem piscar na tela.
+- Quando o estado é `visible`, a Waybar inicia normalmente.
+
+A inicialização é integrada ao Hyprland por meio do arquivo `configs/hypr/hyprland.lua`.
+
+### Scripts
+
+| Arquivo | Função |
+|---|---|
+| `configs/waybar/scripts/iniciar.sh` | Inicia a Waybar respeitando o último estado |
+| `configs/waybar/scripts/visibilidade.sh` | Alterna a visibilidade e salva a preferência |
+
+## ⚙️ Configurações adicionais
+
+O repositório também contém configurações de Neovim, Fastfetch, Kvantum, qt6ct, SwayOSD, keyd, portal de arquivos e serviços systemd, além das listas de pacotes em `packages/`.
 
 ## 🚀 Instalação e recuperação
 
