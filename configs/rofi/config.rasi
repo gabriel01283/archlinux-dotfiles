@@ -1,0 +1,4 @@
+configuration {
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
