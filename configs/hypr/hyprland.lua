@@ -396,11 +396,23 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
-for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+for i = 1, 9 do
+    local script = "/home/gabriel/.config/hypr/scripts/workspace-monitor.sh"
+
+    hl.bind(
+        mainMod .. " + " .. i,
+        hl.dsp.exec_cmd(script .. " " .. i .. " focus")
+    )
+
+    hl.bind(
+        mainMod .. " + SHIFT + " .. i,
+        hl.dsp.exec_cmd(script .. " " .. i .. " move")
+    )
 end
+
+-- Workspace 10 permanece acessivel pela tecla 0.
+hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = "10" }))
+hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10" }))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
@@ -480,3 +492,13 @@ hl.window_rule({
 
 
 
+
+
+-- AUTO-WORKSPACES-MONITORES
+hl.exec_cmd("/home/gabriel/.config/hypr/scripts/iniciar-workspaces.sh")
+
+
+-- AUTO-WORKSPACES-HOTPLUG
+hl.on("monitor.added", function()
+    hl.exec_cmd("/home/gabriel/.config/hypr/scripts/iniciar-workspaces.sh")
+end)

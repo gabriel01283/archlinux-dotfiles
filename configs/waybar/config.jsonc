@@ -1,105 +1,266 @@
-{
-  "layer": "top",
-  "position": "top",
-  "margin": "0 0 0 0",
-  "spacing": 3,
-  "modules-left": [
-    "custom/apps",
-    "hyprland/workspaces",
-    "hyprland/window"
-  ],
-  "modules-center": [
-    "clock"
-  ],
-  "modules-right": [
-    "group/right-icons"
-  ],
-  "custom/apps": {
-    "format": "󰣇",
-    "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi",
-    "align": 0.5,
-    "justify": "center",
-    "tooltip": false
-  },
-  "clock": {
-    "format": "{:%H:%M  %A, %B(%d)}",
-    "tooltip-format": "{:%d/%m/%Y}"
-  },
-  "network": {
-    "format-wifi": "󰖩",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰖪",
-    "on-click": "nm-connection-editor",
-    "align": 0.5,
-    "justify": "center",
-    "tooltip": false
-  },
-  "bluetooth": {
-    "format": "󰂯",
-    "format-disabled": "󰂲",
-    "on-click": "blueman-manager"
-  },
-  "pulseaudio": {
-    "format": "󰕾",
-    "format-muted": "󰖁",
-    "on-click": "pavucontrol",
-    "on-scroll-up": "swayosd-client --output-volume raise",
-    "on-scroll-down": "swayosd-client --output-volume lower",
-    "align": 0.5,
-    "justify": "center"
-  },
-  "backlight": {
-    "format": "☀",
-    "tooltip": true,
-    "tooltip-format": "Brilho do notebook: {percent}%",
-    "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
-    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
-    "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh"
-  },
-  "tray": {
-    "spacing": 10
-  },
-  "custom/brightness": {
-    "exec": "/home/gabriel/.config/waybar/scripts/status-brilho.sh",
-    "return-type": "json",
-    "interval": 3,
-    "format": "{}",
-    "tooltip": true,
-    "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh",
-    "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
-    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
-    "align": 0.5,
-    "justify": "center"
-  },
-  "custom/settings": {
-    "format": "󰒓",
-    "tooltip": true,
-    "tooltip-format": "Configurações",
-    "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'",
-    "align": 0.5,
-    "justify": "center"
-  },
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "sort-by-id": true,
-    "disable-scroll": true,
-    "persistent-workspaces": {
-      "*": 9
-    }
-  },
-  "group/right-icons": {
-    "orientation": "horizontal",
-    "modules": [
-      "network",
-      "pulseaudio",
-      "custom/brightness",
-      "custom/settings"
+[
+  {
+    "output": "eDP-1",
+    "layer": "top",
+    "position": "top",
+    "margin": "0 0 0 0",
+    "spacing": 3,
+    "modules-left": [
+      "custom/apps",
+      "hyprland/workspaces",
+      "hyprland/window"
     ],
-    "spacing": 0
+    "modules-center": [
+      "clock"
+    ],
+    "modules-right": [
+      "group/right-icons"
+    ],
+    "custom/apps": {
+      "format": "󰣇",
+      "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi",
+      "align": 0.5,
+      "justify": "center",
+      "tooltip": false
+    },
+    "clock": {
+      "format": "{:%H:%M  %A, %B(%d)}",
+      "tooltip-format": "{:%d/%m/%Y}"
+    },
+    "network": {
+      "format-wifi": "󰖩",
+      "format-ethernet": "󰈀",
+      "format-disconnected": "󰖪",
+      "on-click": "nm-connection-editor",
+      "align": 0.5,
+      "justify": "center",
+      "tooltip": false
+    },
+    "bluetooth": {
+      "format": "󰂯",
+      "format-disabled": "󰂲",
+      "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+      "format": "󰕾",
+      "format-muted": "󰖁",
+      "on-click": "pavucontrol",
+      "on-scroll-up": "swayosd-client --output-volume raise",
+      "on-scroll-down": "swayosd-client --output-volume lower",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "backlight": {
+      "format": "☀",
+      "tooltip": true,
+      "tooltip-format": "Brilho do notebook: {percent}%",
+      "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+      "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+      "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh"
+    },
+    "tray": {
+      "spacing": 10
+    },
+    "custom/brightness": {
+      "exec": "/home/gabriel/.config/waybar/scripts/status-brilho.sh",
+      "return-type": "json",
+      "interval": 3,
+      "format": "{}",
+      "tooltip": true,
+      "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh",
+      "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+      "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "custom/settings": {
+      "format": "󰒓",
+      "tooltip": true,
+      "tooltip-format": "Configurações",
+      "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9"
+      },
+      "sort-by-id": true,
+      "disable-scroll": true,
+      "all-outputs": false,
+      "persistent-workspaces": {
+        "eDP-1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "ignore-workspaces": [
+        "^(1[1-9])$"
+      ]
+    },
+    "group/right-icons": {
+      "orientation": "horizontal",
+      "modules": [
+        "network",
+        "pulseaudio",
+        "custom/brightness",
+        "custom/settings"
+      ],
+      "spacing": 0
+    },
+    "hyprland/window": {
+      "format": "",
+      "tooltip": false,
+      "separate-outputs": true
+    },
+    "name": "waybar-notebook"
   },
-  "hyprland/window": {
-    "format": "",
-    "tooltip": false,
-    "separate-outputs": true
+  {
+    "output": "HDMI-A-1",
+    "layer": "top",
+    "position": "top",
+    "margin": "0 0 0 0",
+    "spacing": 3,
+    "modules-left": [
+      "custom/apps",
+      "hyprland/workspaces",
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "clock"
+    ],
+    "modules-right": [
+      "group/right-icons"
+    ],
+    "custom/apps": {
+      "format": "󰣇",
+      "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi",
+      "align": 0.5,
+      "justify": "center",
+      "tooltip": false
+    },
+    "clock": {
+      "format": "{:%H:%M  %A, %B(%d)}",
+      "tooltip-format": "{:%d/%m/%Y}"
+    },
+    "network": {
+      "format-wifi": "󰖩",
+      "format-ethernet": "󰈀",
+      "format-disconnected": "󰖪",
+      "on-click": "nm-connection-editor",
+      "align": 0.5,
+      "justify": "center",
+      "tooltip": false
+    },
+    "bluetooth": {
+      "format": "󰂯",
+      "format-disabled": "󰂲",
+      "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+      "format": "󰕾",
+      "format-muted": "󰖁",
+      "on-click": "pavucontrol",
+      "on-scroll-up": "swayosd-client --output-volume raise",
+      "on-scroll-down": "swayosd-client --output-volume lower",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "backlight": {
+      "format": "☀",
+      "tooltip": true,
+      "tooltip-format": "Brilho do notebook: {percent}%",
+      "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+      "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+      "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh"
+    },
+    "tray": {
+      "spacing": 10
+    },
+    "custom/brightness": {
+      "exec": "/home/gabriel/.config/waybar/scripts/status-brilho.sh",
+      "return-type": "json",
+      "interval": 3,
+      "format": "{}",
+      "tooltip": true,
+      "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh",
+      "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
+      "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "custom/settings": {
+      "format": "󰒓",
+      "tooltip": true,
+      "tooltip-format": "Configurações",
+      "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'",
+      "align": 0.5,
+      "justify": "center"
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "11": "1",
+        "12": "2",
+        "13": "3",
+        "14": "4",
+        "15": "5",
+        "16": "6",
+        "17": "7",
+        "18": "8",
+        "19": "9"
+      },
+      "sort-by-id": true,
+      "disable-scroll": true,
+      "all-outputs": false,
+      "persistent-workspaces": {
+        "HDMI-A-1": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "ignore-workspaces": [
+        "^([1-9])$"
+      ]
+    },
+    "group/right-icons": {
+      "orientation": "horizontal",
+      "modules": [
+        "network",
+        "pulseaudio",
+        "custom/brightness",
+        "custom/settings"
+      ],
+      "spacing": 0
+    },
+    "hyprland/window": {
+      "format": "",
+      "tooltip": false,
+      "separate-outputs": true
+    },
+    "name": "waybar-lg"
   }
-}
+]
