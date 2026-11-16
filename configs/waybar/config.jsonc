@@ -2,22 +2,24 @@
   "layer": "top",
   "position": "top",
   "margin": "0 0 0 0",
-  "spacing": 4,
+  "spacing": 3,
   "modules-left": [
-    "custom/apps"
+    "custom/apps",
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
-    "network",
-    "pulseaudio",
-    "custom/brightness",
-    "custom/settings"
+    "group/right-icons"
   ],
   "custom/apps": {
     "format": "󰣇",
-    "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi"
+    "on-click": "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocean-neon.rasi",
+    "align": 0.5,
+    "justify": "center",
+    "tooltip": false
   },
   "clock": {
     "format": "{:%H:%M  %A, %B(%d)}",
@@ -27,7 +29,10 @@
     "format-wifi": "󰖩",
     "format-ethernet": "󰈀",
     "format-disconnected": "󰖪",
-    "on-click": "nm-connection-editor"
+    "on-click": "nm-connection-editor",
+    "align": 0.5,
+    "justify": "center",
+    "tooltip": false
   },
   "bluetooth": {
     "format": "󰂯",
@@ -39,7 +44,9 @@
     "format-muted": "󰖁",
     "on-click": "pavucontrol",
     "on-scroll-up": "swayosd-client --output-volume raise",
-    "on-scroll-down": "swayosd-client --output-volume lower"
+    "on-scroll-down": "swayosd-client --output-volume lower",
+    "align": 0.5,
+    "justify": "center"
   },
   "backlight": {
     "format": "☀",
@@ -60,12 +67,39 @@
     "tooltip": true,
     "on-click": "/home/gabriel/.config/waybar/scripts/escolher-monitor.sh",
     "on-scroll-up": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh up",
-    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down"
+    "on-scroll-down": "/home/gabriel/.config/waybar/scripts/ajustar-brilho.sh down",
+    "align": 0.5,
+    "justify": "center"
   },
   "custom/settings": {
     "format": "󰒓",
     "tooltip": true,
     "tooltip-format": "Configurações",
-    "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'"
+    "on-click": "sh -c 'sleep 0.15; exec \"$HOME/.config/waybar/scripts/configuracoes.sh\"'",
+    "align": 0.5,
+    "justify": "center"
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "sort-by-id": true,
+    "disable-scroll": true,
+    "persistent-workspaces": {
+      "*": 9
+    }
+  },
+  "group/right-icons": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "pulseaudio",
+      "custom/brightness",
+      "custom/settings"
+    ],
+    "spacing": 0
+  },
+  "hyprland/window": {
+    "format": "",
+    "tooltip": false,
+    "separate-outputs": true
   }
 }

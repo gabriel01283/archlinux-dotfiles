@@ -45,6 +45,7 @@ local menu = "rofi -show drun -show-icons -theme /home/gabriel/.config/rofi/ocea
 -------------------
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
+    hl.exec_cmd("/home/gabriel/.config/waybar/scripts/visibilidade.sh restore")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("swaync")
     hl.exec_cmd("swayosd-server")
@@ -56,7 +57,7 @@ end)
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 --
--- hl.on("hyprland.start", function ()
+-- hl.on("hyprland.start", function () 
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
@@ -161,9 +162,9 @@ hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, da
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
 hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windows",       enabled = true,  speed = 5.2, spring = "easy" })
-hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.5,  spring = "easy",         style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 2.2, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "windows",       enabled = true,  speed = 4.2, spring = "easy" })
+hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.0,  spring = "easy",         style = "popin 92%" })
+hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 3.0, bezier = "easeOutQuint", style = "popin 92%" })
 hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
 hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
@@ -172,28 +173,122 @@ hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "
 hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
 hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspaces",    enabled = true,  speed = 4.5, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 4.5, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 4.5, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
 -- Ref https://wiki.hypr.land/configuring/core/rules/workspace-rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+-- SMART GAPS DINAMICOS
+-- Janela unica comum ocupa toda a area util.
+-- Kitty sozinho preserva o visual normal.
+-- Multiplas janelas eliminam apenas o gap superior.
+
+local smartGapRules = {}
+local multiWindowGapRules = {}
+
+local function ensureSmartGapRule(ws)
+    if not ws or not ws.id or ws.special then
+        return nil
+    end
+
+    local id = tostring(ws.id)
+
+    if not smartGapRules[id] then
+        smartGapRules[id] = hl.workspace_rule({
+            workspace = id,
+            gaps_in = 0,
+            gaps_out = 0,
+            no_border = true,
+            no_rounding = true,
+            enabled = false,
+        })
+    end
+
+    return smartGapRules[id]
+end
+
+local function ensureMultiWindowGapRule(ws)
+    if not ws or not ws.id or ws.special then
+        return nil
+    end
+
+    local id = tostring(ws.id)
+
+    if not multiWindowGapRules[id] then
+        multiWindowGapRules[id] = hl.workspace_rule({
+            workspace = id,
+            gaps_in = 11,
+            gaps_out = {
+                top = 30,
+                right = 30,
+                bottom = 30,
+                left = 30,
+            },
+            enabled = false,
+        })
+    end
+
+    return multiWindowGapRules[id]
+end
+
+local function updateSmartGaps()
+    for _, ws in ipairs(hl.get_workspaces()) do
+        if not ws.special then
+            local singleRule = ensureSmartGapRule(ws)
+            local multiRule = ensureMultiWindowGapRule(ws)
+
+            if singleRule and multiRule then
+                local windows = hl.get_workspace_windows(ws)
+                local visible = {}
+
+                for _, win in ipairs(windows) do
+                    if win.mapped and win.visible and not win.hidden then
+                        table.insert(visible, win)
+                    end
+                end
+
+                local ocuparTela =
+                    #visible == 1
+                    and not visible[1].floating
+                    and visible[1].class ~= "kitty"
+
+                singleRule:set_enabled(ocuparTela)
+                multiRule:set_enabled(#visible >= 2)
+            end
+        end
+    end
+end
+
+for _, ws in ipairs(hl.get_workspaces()) do
+    ensureSmartGapRule(ws)
+    ensureMultiWindowGapRule(ws)
+end
+
+local smartGapEvents = {
+    "window.open",
+    "window.destroy",
+    "window.move_to_workspace",
+    "window.update_state",
+    "workspace.active",
+    "workspace.created",
+}
+
+-- Reavaliar apos o compositor concluir a atualizacao das janelas.
+local function scheduleSmartGaps()
+    hl.timer(updateSmartGaps, {
+        timeout = 150,
+        type = "oneshot",
+    })
+end
+
+for _, event in ipairs(smartGapEvents) do
+    hl.on(event, scheduleSmartGaps)
+end
+
+updateSmartGaps()
 
 -- See https://wiki.hypr.land/configuring/layouts/dwindle-layout/ for more
 hl.config({
@@ -287,7 +382,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind("CTRL + Escape", hl.dsp.exec_cmd("pkill -SIGUSR1 -x waybar"))
+hl.bind("CTRL + Escape", hl.dsp.exec_cmd("/home/gabriel/.config/waybar/scripts/visibilidade.sh toggle"))
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("bash -lc '$HOME/.config/waybar/scripts/historico.sh'"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
@@ -321,9 +416,9 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
@@ -383,3 +478,6 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+
+

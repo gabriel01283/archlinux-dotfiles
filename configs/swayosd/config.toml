@@ -1,0 +1,6 @@
+[server]
+top_margin = 0.82
+show_percentage = true
+duration = 1100
+
+[client]

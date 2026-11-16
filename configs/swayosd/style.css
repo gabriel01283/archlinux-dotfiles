@@ -1,0 +1,32 @@
+/* OCEAN NEON - SwayOSD */
+
+window#osd {
+    background-color: rgba(7, 18, 32, 0.94);
+    border: 1px solid rgba(0, 229, 255, 0.85);
+    border-radius: 18px;
+}
+
+window#osd .container {
+    margin: 14px;
+}
+
+window#osd image,
+window#osd label {
+    color: #D9F5FF;
+}
+
+window#osd progressbar {
+    min-height: 9px;
+    border-radius: 8px;
+    background-color: rgba(0, 229, 255, 0.15);
+}
+
+window#osd progressbar trough {
+    background-color: rgba(0, 229, 255, 0.15);
+    border-radius: 8px;
+}
+
+window#osd progressbar progress {
+    background-color: #00E5FF;
+    border-radius: 8px;
+}

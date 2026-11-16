@@ -1,0 +1,96 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "builtin",
+    "source": "arch",
+    "padding": {
+      "top": 0,
+      "left": 0,
+      "right": 2
+    },
+    "color": {
+      "1": "blue",
+      "2": "blue"
+    }
+  },
+  "display": {
+    "separator": " ",
+    "key": {
+      "width": 12
+    },
+    "color": {
+      "keys": "magenta",
+      "title": "cyan"
+    },
+    "bar": {
+      "char": {
+        "elapsed": "━",
+        "total": "━"
+      },
+      "width": 8
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "format": "{#37}{user-name}{#36}@{host-name}{#}"
+    },
+    "separator",
+    {
+      "type": "custom",
+      "format": "SYSTEM: ARCH + HYPRLAND"
+    },
+    {
+      "type": "os",
+      "key": "󰣇 OS"
+    },
+    {
+      "type": "kernel",
+      "key": "󰒋 Kernel"
+    },
+    {
+      "type": "wm",
+      "key": " WM"
+    },
+    {
+      "type": "terminal",
+      "key": " Terminal"
+    },
+    {
+      "type": "cpu",
+      "key": " CPU",
+      "temp": true
+    },
+    {
+      "type": "gpu",
+      "key": "󰢮 GPU",
+      "format": "AMD Radeon Vega"
+    },
+    {
+      "type": "memory",
+      "key": " RAM",
+      "percent": {
+        "type": 3
+      }
+    },
+    {
+      "type": "disk",
+      "key": "󰋊 Disk",
+      "folders": [
+        "/"
+      ],
+      "percent": {
+        "type": 3
+      }
+    },
+    {
+      "type": "uptime",
+      "key": "󰅐 Uptime"
+    },
+    {
+      "type": "packages",
+      "key": "󰏖 Packages",
+      "format": "{all}"
+    }
+  ]
+}

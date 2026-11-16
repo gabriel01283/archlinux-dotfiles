@@ -1,58 +1,531 @@
+
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     border: none;
     min-height: 0;
+    box-shadow: none;
 }
 
 window#waybar {
-    background: rgba(7, 21, 34, 0.90);
-    color: #D9F5FF;
+    background: transparent;
+    color: #E9D9FF;
 }
 
+/* Ícones compactos e arredondados */
 #custom-apps,
 #network,
-#bluetooth,
 #pulseaudio,
 #custom-brightness,
-#custom-settings,
-#battery,
-#clock {
-    padding: 0 12px;
-    margin: 4px 2px;
-    background: transparent;
-    color: #D9F5FF;
-}
-
-#custom-apps,
 #custom-settings {
-    color: #00F5FF;
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+
+    min-width: 27px;
+    min-height: 27px;
+
+    padding: 0 3px 0 0;
+    margin: 2px 1px;
+
+    font-size: 16px;
+    color: #DCC5FF;
 }
 
-#custom-settings,
-#custom-brightness {
+/* Arch Linux em azul */
+#custom-apps {
+    color: #38BDF8;
     font-size: 18px;
 }
 
+/* Workspaces */
+#workspaces {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+
+    min-height: 27px;
+    padding: 0 6px;
+    margin: 2px 2px;
+}
+
+#workspaces button {
+    background: transparent;
+    color: #AD99CA;
+
+    border-radius: 999px;
+    min-width: 18px;
+    min-height: 21px;
+
+    padding: 0 4px;
+    margin: 2px 1px;
+
+    font-size: 12px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button.active {
+    background: #8B5CF6;
+    color: #FFFFFF;
+}
+
+#workspaces button:hover {
+    background: #6946A3;
+    color: #FFFFFF;
+}
+
+/* Relógio compacto */
+#clock {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+
+    min-height: 27px;
+    padding: 0 11px;
+    margin: 2px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: #E9D9FF;
+}
+
+/* Configurações */
+#custom-settings {
+    color: #C59BFF;
+}
+
+/* Alertas */
 #network.disconnected,
 #pulseaudio.muted {
-    color: #fb7185;
+    color: #FB7185;
 }
 
+/* Tooltips */
 tooltip {
-    background: #071522;
-    color: #D9F5FF;
-    border: 1px solid #00BFFF;
-    border-radius: 8px;
+    background: #1B142B;
+    border: 1px solid #9B6CE8;
+    border-radius: 12px;
+    color: #E9D9FF;
 }
 
-/* Tamanho do ícone Arch Linux */
+tooltip label {
+    color: #E9D9FF;
+}
+
+/* Deslocar os três ícones para a direita */
+#pulseaudio,
+#custom-brightness,
+#custom-settings {
+    padding-left: 3px;
+    padding-right: 0;
+}
+
+
+/* Deslocar os três ícones para a direita */
+#pulseaudio,
+#custom-brightness,
+#custom-settings {
+    padding-left: 3px;
+    padding-right: 0;
+}
+
+
+/* WIFI */
+#network label {
+    margin-left: 0px;
+}
+
+/* SOM */
+#pulseaudio label {
+    margin-left: 2px;
+}
+
+/* SOL / BRILHO */
+#custom-brightness label {
+    margin-left: 2px;
+}
+
+/* CONFIGURAÇÕES */
+#custom-settings label {
+    margin-left: 2px;
+}
+
+/* Arch Linux — alinhamento */
 #custom-apps {
+    min-width: 27px;
+    min-height: 27px;
+    padding: 0;
+    color: #38BDF8;
+}
+
+
+
+
+
+
+
+/* Arch: alinhamento interno */
+#custom-apps {
+    min-width: 27px;
+    min-height: 27px;
+    padding-left: 0px;
+    padding-right: 4px;
+    margin-right: 1px;
+}
+
+/* ICONES SEM CIRCULOS */
+#custom-apps,
+#network,
+#pulseaudio,
+#custom-brightness,
+#custom-settings {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 2px 5px;
+}
+
+/* Círculo exclusivo do Arch */
+#custom-apps {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 50%;
+    min-width: 27px;
+    min-height: 27px;
+    padding: 0;
+    margin: 2px 1px;
+    color: #38BDF8;
+    font-size: 18px;
+}
+
+/* Arch: deslocamento de 2px para a esquerda */
+#custom-apps {
+    min-width: 27px;
+    min-height: 27px;
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+/* Arch: ajuste vertical */
+#custom-apps {
+    padding-top: 0px;
+    padding-bottom: 1px;
+}
+
+
+/* CIRCULOS DOS ICONES DIREITOS - INICIO */
+#network,
+#pulseaudio,
+#custom-brightness,
+#custom-settings {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+
+    min-width: 27px;
+    min-height: 27px;
+
+    padding: 0;
+    margin: 2px 1px;
+}
+/* CIRCULOS DOS ICONES DIREITOS - FIM */
+
+/* Wi-Fi: ajuste horizontal */
+#network {
+    padding-left: 0px;
+    padding-right: 2px;
+}
+
+/* Brilho: ajuste horizontal */
+#custom-brightness {
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
+/* Brilho: ajuste vertical */
+#custom-brightness {
+    padding-top: 1.6px;
+    padding-bottom: 0px;
+}
+
+/* Brilho: ajuste horizontal fino */
+#custom-brightness {
+    padding-left: 1.9px;
+    padding-right: 1.1px;
+}
+
+/* Brilho: círculo ligeiramente menor */
+#custom-brightness {
+    min-width: 26px;
+    min-height: 26px;
+}
+
+/* Brilho: símbolo ligeiramente maior */
+#custom-brightness {
+    font-size: 17px;
+}
+
+/* Configurações: ajuste horizontal */
+#custom-settings {
+    padding-left: 0px;
+    padding-right: 2px;
+}
+
+/* PADRONIZACAO 29PX - INICIO */
+
+#custom-apps {
+    min-width: 24px;
+    min-height: 26px;
+    padding-left: 0px;
+    padding-right: 3px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    border: 1px solid #67488D;
+    border-radius: 999px;
+}
+/* PADRONIZACAO 29PX - FIM */
+
+
+/* AJUSTES FINOS DOS ICONES - INICIO */
+
+/* Wi-Fi: manter */
+#network {
+    padding-top: 0.5px;
+    padding-bottom: 0px;
+    min-height: 26.5px;
+}
+
+/* Som: 0.25px para esquerda */
+#pulseaudio {
+    padding-left: 1.5px;
+    padding-right: 1.5px;
+}
+
+/* Sol: 0.25px para cima */
+#custom-brightness {
+    padding-left: 2px;
+    padding-right: 1px;
+    padding-top: 1.95px;
+    padding-bottom: 0.15px;
+    min-height: 23.9px;
+}
+
+/* Configurações: 0.25px para esquerda */
+#custom-settings {
+    padding-left: 0px;
+    padding-right: 2px;
+    padding-top: 0.5px;
+    padding-bottom: 0px;
+    min-height: 26.5px;
+}
+
+/* AJUSTES FINOS DOS ICONES - FIM */
+
+
+
+
+/* GRUPO DIREITO - barra unica com divisorias */
+#right-icons {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+    margin: 2px 1px;
+    padding: 0 5px;
+}
+#right-icons #network,
+#right-icons #pulseaudio,
+#right-icons #custom-brightness,
+#right-icons #custom-settings {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    min-width: 27px;
+    min-height: 27px;
+    padding: 0 7px;
+}
+#right-icons #pulseaudio,
+#right-icons #custom-brightness,
+#right-icons #custom-settings {
+    border-left: 1px solid #67488D;
+}
+
+
+
+/* GRUPO DIREITO - ESTILO DEFINITIVO */
+#right-icons {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    border-radius: 999px;
+    margin: 2px 1px;
+    padding: 0 5px;
+}
+
+#right-icons #network,
+#right-icons #pulseaudio,
+#right-icons #custom-brightness,
+#right-icons #custom-settings {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0 8px;
+    min-width: 20px;
+    min-height: 27px;
+}
+
+/* Arch: ajuste horizontal fino */
+#custom-apps {
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+/* Arch sem esfera */
+#custom-apps {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 2px 10px 2px 5px;
+    color: #38BDF8;
     font-size: 22px;
 }
 
-/* Azul vivo: Arch Linux e engrenagem */
-#custom-apps,
-#custom-settings {
+/* Cores individuais das áreas de trabalho */
+#workspaces button:nth-child(1) { color: #38BDF8; }
+#workspaces button:nth-child(2) { color: #A78BFA; }
+#workspaces button:nth-child(3) { color: #F472B6; }
+#workspaces button:nth-child(4) { color: #34D399; }
+#workspaces button:nth-child(5) { color: #FBBF24; }
+#workspaces button:nth-child(6) { color: #FB7185; }
+#workspaces button:nth-child(7) { color: #22D3EE; }
+#workspaces button:nth-child(8) { color: #C084FC; }
+#workspaces button:nth-child(9) { color: #A3E635; }
+#workspaces button:nth-child(10) { color: #FDBA74; }
+
+/* Seleção ativa: efeito de vidro roxo */
+#workspaces button.active {
+    background: rgba(155, 92, 255, 0.55);
+    border: 1px solid rgba(205, 165, 255, 0.65);
+    border-radius: 999px;
+    box-shadow: 0 0 8px rgba(170, 100, 255, 0.45);
+    text-shadow: 0 0 5px rgba(220, 190, 255, 0.65);
+}
+
+/* Grupo direito: efeito de vidro roxo */
+#right-icons {
+    background: rgba(155, 92, 255, 0.25);
+    border: 1px solid rgba(205, 165, 255, 0.65);
+    border-radius: 999px;
+    box-shadow: 0 0 8px rgba(170, 100, 255, 0.45);
+}
+
+#right-icons #network,
+#right-icons #pulseaudio,
+#right-icons #custom-brightness,
+#right-icons #custom-settings {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Restaurar fundo original da cápsula direita */
+#right-icons {
+    background: rgba(39, 25, 60, 0.95);
+    border: 1px solid #67488D;
+    box-shadow: none;
+}
+
+/* Cores individuais dos ícones */
+#right-icons #network {
     color: #38BDF8;
+}
+
+#right-icons #pulseaudio {
+    color: #34D399;
+}
+
+#right-icons #custom-brightness {
+    color: #FBBF24;
+}
+
+#right-icons #custom-settings {
+    color: #C084FC;
+}
+
+/* Área ativa: ponto branco em vez de bolinha roxa */
+#workspaces button.active,
+#workspaces button.focused {
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button.active label,
+#workspaces button.focused label {
+    border-bottom: 3px solid white;
+    border-radius: 2px;
+    padding-bottom: 1px;
+}
+
+/* TESTE: fundo roxo-escuro sem alterar as ilhas */
+window#waybar {
+    background: #27193C;
+}
+
+/* WAYBAR DINAMICA - CSS */
+#window {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+window#waybar.solo {
+    background: #27193C;
+}
+
+window#waybar.solo.kitty {
+    background: transparent;
+}
+
+/* WAYBAR DINAMICA - CSS */
+#window {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+window#waybar.solo {
+    background: #27193C;
+}
+
+window#waybar.solo.kitty {
+    background: transparent;
+}
+
+
+/* Espaçamento das ilhas com Waybar ocupando a tela inteira */
+#custom-apps {
+    margin-left: 8px;
+}
+
+#right-icons {
+    margin-right: 8px;
 }
