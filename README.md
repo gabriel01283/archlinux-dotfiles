@@ -1,14 +1,14 @@
 <div align="center">
 
-# 󰣇 ARCH LINUX // OCEAN NEON
+# 󰣇 ARCH LINUX // PURPLE NEON
 
 ### My Personal Hyprland Desktop
 
-**Minimalista • Cyberpunk • Azul Neon • Roxo • Transparência**
+**Minimalista • Cyberpunk • Roxo Neon • Lilás • Transparência**
 
 ![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
-![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?style=for-the-badge)
-![Waybar](https://img.shields.io/badge/Waybar-38BDF8?style=for-the-badge)
+![Hyprland](https://img.shields.io/badge/Hyprland-8B5CF6?style=for-the-badge)
+![Waybar](https://img.shields.io/badge/Waybar-A78BFA?style=for-the-badge)
 ![Kitty](https://img.shields.io/badge/Kitty-8B5CF6?style=for-the-badge)
 ![Starship](https://img.shields.io/badge/Starship-A78BFA?style=for-the-badge)
 
@@ -25,7 +25,7 @@ Este repositório reúne as configurações do meu ambiente **Arch Linux + Hyprl
 A proposta é combinar:
 
 - Interface minimalista com detalhes neon.
-- Paleta azul-ciano e roxo.
+- Paleta roxa e lilás, com detalhes neon.
 - Janelas com transparência e efeitos de blur.
 - Terminal personalizado com dashboard.
 - Barra de tarefas com módulos e scripts próprios.
@@ -36,8 +36,8 @@ A proposta é combinar:
 
 | Elemento | Estilo |
 |---|---|
-| Cor principal | `#38BDF8` — azul neon |
-| Cor secundária | Roxo / lilás |
+| Cor principal | Roxo neon |
+| Cor secundária | Lilás e violeta |
 | Ambiente | Dark / Cyberpunk |
 | Janelas | Transparência e blur |
 | Terminal | Dashboard Arch personalizado |
@@ -168,6 +168,6 @@ Manter uma referência versionada e organizada do meu ambiente para que eu possa
 
 **Built with Arch Linux, Hyprland & a little neon.**
 
-`ARCH // OCEAN NEON`
+`ARCH // PURPLE NEON`
 
 </div>
